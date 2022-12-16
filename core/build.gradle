@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'ke.co.branch.chat'
+    compileSdk AndroidSdk.compileSdkVersion
+
+
+    defaultConfig {
+
+        minSdk AndroidSdk.minSdkVersion
+        targetSdk AndroidSdk.targetSdkVersion
+        versionCode AndroidSdk.versionCode
+        versionName AndroidSdk.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    kapt {
+        correctErrorTypes true
+    }
+}
+
+dependencies {
+    //core
+    implementation(Libraries.coreKtx)
+    implementation(Libraries.appCompat)
+    implementation(Libraries.material)
+    implementation(Libraries.constraintLayout)
+
+    //coroutines
+    implementation(Libraries.coroutines)
+    implementation(Libraries.coroutinesAndroid)
+
+    implementation(Libraries.dataStore)
+
+    //retrofit
+    implementation(Libraries.retrofit)
+    implementation(Libraries.retrofitKotlinSerialization)
+    implementation(Libraries.ohttp)
+    implementation(Libraries.loggingInterceptor)
+    implementation(Libraries.retrofitCoroutineAdapter)
+    implementation(Libraries.kotlinSerializationJson)
+
+    //room
+    implementation(Libraries.room)
+    implementation(Libraries.roomRuntime)
+    kapt(Libraries.roomCompiler)
+
+    //data store
+    implementation(Libraries.dataStore)
+
+    //DI
+    implementation(Libraries.hilt)
+    kapt(Libraries.hiltCompiler)
+
+
+
+    //test
+    testImplementation(TestLibraries.jUnit)
+    androidTestImplementation(TestLibraries.androidXJUnit)
+    androidTestImplementation(TestLibraries.espresso)
+}

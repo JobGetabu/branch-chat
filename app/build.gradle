@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'ke.co.branch.chat'
+    compileSdk AndroidSdk.compileSdkVersion
+
+    defaultConfig {
+        applicationId "ke.co.branch.chat"
+        minSdk AndroidSdk.minSdkVersion
+        targetSdk AndroidSdk.targetSdkVersion
+        versionCode AndroidSdk.versionCode
+        versionName AndroidSdk.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    kapt {
+        correctErrorTypes true
+    }
+}
+
+dependencies {
+    //core
+    implementation(Libraries.coreKtx)
+    implementation(Libraries.appCompat)
+    implementation(Libraries.material)
+    implementation(Libraries.constraintLayout)
+
+    //DI
+    implementation(Libraries.hilt)
+    kapt(Libraries.hiltCompiler)
+
+    //livedata
+    implementation(Libraries.viewModel)
+    implementation(Libraries.livedata)
+    implementation(Libraries.livedata)
+
+
+    //test
+    testImplementation(TestLibraries.jUnit)
+    androidTestImplementation(TestLibraries.androidXJUnit)
+    androidTestImplementation(TestLibraries.espresso)
+
+    implementation project(path: ":core")
+}
