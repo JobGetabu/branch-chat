@@ -1,4 +1,4 @@
-package com.branch.core_database.di
+package ke.co.branch.core.database.di
 
 import android.content.Context
 import androidx.room.Room
@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ke.co.branch.core.database.AppDatabase
-import ke.co.branch.core.database.dao.ChatsDao
+import ke.co.branch.core.database.dao.MessagesDao
 import ke.co.branch.core.utils.DataStore
 import ke.co.branch.core.utils.DataStoreImpl
 import javax.inject.Singleton
@@ -30,5 +30,5 @@ object DataBaseModule {
 
     @Singleton
     @Provides
-    fun provideMessagesDao(appDatabase: AppDatabase): ChatsDao = appDatabase.provideChatsDao()
+    fun provideMessagesDao(appDatabase: AppDatabase): MessagesDao = appDatabase.provideMessagesDao()
 }

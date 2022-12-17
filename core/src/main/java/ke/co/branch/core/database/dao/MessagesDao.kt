@@ -1,0 +1,25 @@
+package ke.co.branch.core.database.dao
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import ke.co.branch.core.database.entities.MessageEntity
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface MessagesDao {
+    @Insert
+    suspend fun insertAll(messages: List<MessageEntity>)
+
+    @Insert
+    suspend fun insert(message: MessageEntity)
+
+    @Query("SELECT * FROM messages")
+    fun fetchAllMessages(): Flow<List<MessageEntity>>
+
+    @Query("SELECT * FROM messages WHERE threadId=:threadId")
+    fun getMessagesByThread(threadId: String): Flow<List<MessageEntity>>
+
+    @Query("DELETE FROM messages")
+    suspend fun deleteAllMessages()
+}

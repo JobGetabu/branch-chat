@@ -28,17 +28,19 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideTokenInterceptor(dataStore: DataStore,
+    fun provideTokenInterceptor(
+        dataStore: DataStore,
     ): AuthTokenInterceptor = AuthTokenInterceptor(dataStore)
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(authTokenInterceptor: AuthTokenInterceptor) = OkHttpClient.Builder().apply {
-        addInterceptor(HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        })
-        addInterceptor(authTokenInterceptor)
-    }.build()
+    fun provideOkHttpClient(authTokenInterceptor: AuthTokenInterceptor) =
+        OkHttpClient.Builder().apply {
+            addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            addInterceptor(authTokenInterceptor)
+        }.build()
 
     @OptIn(ExperimentalSerializationApi::class)
     @Provides
@@ -46,7 +48,8 @@ object NetworkModule {
     fun provideRetrofit(json: Json, okHttpClient: OkHttpClient) =
         Retrofit.Builder().client(okHttpClient)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-            .addCallAdapterFactory(CoroutineCallAdapterFactory()).baseUrl("https://android-messaging.branch.co/api/")
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .baseUrl("https://android-messaging.branch.co/api/")
             .build()
 
 }

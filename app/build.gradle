@@ -36,6 +36,10 @@ android {
     kapt {
         correctErrorTypes true
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -47,12 +51,15 @@ dependencies {
 
     //DI
     implementation(Libraries.hilt)
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     kapt(Libraries.hiltCompiler)
 
     //livedata
     implementation(Libraries.viewModel)
     implementation(Libraries.livedata)
-    implementation(Libraries.livedata)
+    implementation(Libraries.lifecycle)
 
 
     //test
