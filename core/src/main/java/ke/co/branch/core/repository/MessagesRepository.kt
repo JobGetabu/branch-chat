@@ -7,13 +7,8 @@ import ke.co.branch.core.utils.DataStore
 import java.lang.Exception
 import javax.inject.Inject
 
-class MessagesRepository @Inject constructor(private val apiService: ApiService,
-                                          val dataStore: DataStore
+class MessagesRepository @Inject constructor(private val apiService: ApiService
 ) {
-    suspend fun loginUser(userName: String, password: String) = apiService.loginUser(
-        LoginRequestModel(userName, password)
-    )
-
     suspend fun getMessages() = apiService.fetchMessages()
 
     suspend fun createMessage(request: MessagesRequest) = apiService.createMessage(request)

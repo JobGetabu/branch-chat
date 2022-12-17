@@ -73,9 +73,13 @@ dependencies {
     kapt(Libraries.hiltCompiler)
 
 
-
     //test
     testImplementation(TestLibraries.jUnit)
+    testImplementation(TestLibraries.mockK)
+    testImplementation(TestLibraries.mockWebServer)
+    testImplementation(TestLibraries.coroutinesTest)
+    testImplementation(TestLibraries.androidXTestCore)
+    testImplementation(TestLibraries.truth)
     androidTestImplementation(TestLibraries.androidXJUnit)
     androidTestImplementation(TestLibraries.espresso)
 }

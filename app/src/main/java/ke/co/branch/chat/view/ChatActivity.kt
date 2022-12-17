@@ -9,13 +9,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import ke.co.branch.chat.adapter.MessagesAdapter
 import ke.co.branch.chat.databinding.ActivityChatBinding
 import ke.co.branch.chat.viewmodel.MainViewModel
-import ke.co.branch.core.network.models.Message
 import ke.co.branch.core.network.models.newMessage
 import ke.co.branch.core.utils.Status
-import ke.co.branch.core.utils.formatDate
 import ke.co.branch.core.utils.showSnackBar
 import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class ChatActivity : AppCompatActivity() {
