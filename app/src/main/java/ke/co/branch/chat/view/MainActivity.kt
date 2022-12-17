@@ -12,6 +12,7 @@ import ke.co.branch.chat.adapter.ChatGroupAdapter
 import ke.co.branch.chat.databinding.ActivityMainBinding
 import ke.co.branch.chat.viewmodel.MainViewModel
 import ke.co.branch.core.utils.Status
+import ke.co.branch.core.utils.showSnackBar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -51,14 +52,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-    private fun showSnackBar(message: String?, activity: Activity?) {
-        if (null != activity && null != message) {
-            Snackbar.make(
-                activity.findViewById(android.R.id.content),
-                message, Snackbar.LENGTH_SHORT
-            ).show()
-        }
     }
 }

@@ -1,17 +1,19 @@
 package ke.co.branch.chat.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ke.co.branch.chat.R
 import ke.co.branch.chat.databinding.MainListItemBinding
+import ke.co.branch.chat.view.ChatActivity
 import ke.co.branch.core.network.models.Chat
 
 class ChatGroupAdapter : RecyclerView.Adapter<ChatGroupAdapter.MyVH>() {
     private var items: MutableList<Chat>? = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyVH {
-        val binding = MainListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            MainListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyVH(binding)
     }
 
@@ -22,6 +24,13 @@ class ChatGroupAdapter : RecyclerView.Adapter<ChatGroupAdapter.MyVH>() {
             userName.text = model?.userId
             chatDate.text = model?.timeStamp
             textMessage.text = model?.latestMessage
+
+            root.setOnClickListener {
+                val intent = Intent(textMessage.context, ChatActivity::class.java)
+                intent.putExtra("USERNAME_EXTRA", model?.userId)
+                intent.putExtra("THREAD_EXTRA", model?.threadId)
+                it.context.startActivity(intent)
+            }
         }
     }
 

@@ -42,6 +42,17 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun getMyChatsByThreadId(threadId: String) = liveData(Dispatchers.IO) {
+        try {
+            getMessagesByThreadId(threadId).collectLatest {
+                emit(Resource.success(data = it))
+            }
+
+        }catch (e: Exception) {
+            emit(Resource.error(message = "Error getting message!", data = null))
+        }
+    }
+
     private suspend fun getMessages() = withContext(Dispatchers.IO)  {
         try {
             val messages = messagesRepository.getMessages()

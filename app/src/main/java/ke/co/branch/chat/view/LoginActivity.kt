@@ -13,6 +13,7 @@ import ke.co.branch.chat.R
 import ke.co.branch.chat.databinding.ActivityLoginBinding
 import ke.co.branch.chat.viewmodel.LoginViewModel
 import ke.co.branch.core.utils.Status
+import ke.co.branch.core.utils.showSnackBar
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -86,15 +87,6 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK and Intent.FLAG_ACTIVITY_NEW_TASK)
         finish()
-    }
-
-    private fun showSnackBar(message: String?, activity: Activity?) {
-        if (null != activity && null != message) {
-            Snackbar.make(
-                activity.findViewById(android.R.id.content),
-                message, Snackbar.LENGTH_SHORT
-            ).show()
-        }
     }
 
 }

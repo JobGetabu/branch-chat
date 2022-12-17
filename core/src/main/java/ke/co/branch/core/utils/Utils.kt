@@ -1,5 +1,7 @@
 package ke.co.branch.core.utils
 
+import android.app.Activity
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -9,5 +11,14 @@ fun formatDate(date: String?, originFormat: String, toFormat: String): String? {
         SimpleDateFormat(toFormat, Locale.getDefault()).format(parsedDate)
     } catch (e: Exception) {
         date
+    }
+}
+
+fun showSnackBar(message: String?, activity: Activity?) {
+    if (null != activity && null != message) {
+        Snackbar.make(
+            activity.findViewById(android.R.id.content),
+            message, Snackbar.LENGTH_SHORT
+        ).show()
     }
 }
