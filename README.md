@@ -22,11 +22,6 @@
                     <img src="https://github.com/JobGetabu/branch-chat/blob/main/screenshots/Screenshot_20221217_233246.png" width="200" />
                 </a>
             </td>
-           <td style="text-align: center">
-                <a href="">
-                    <img src=" " width="200" />
-                </a>
-            </td>
         </tr>
     </table>
 </div>
