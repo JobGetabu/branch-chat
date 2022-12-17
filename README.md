@@ -25,3 +25,17 @@
         </tr>
     </table>
 </div>
+
+### Tests
+
+<div style="text-align: center">
+    <table>
+        <tr>
+            <td style="text-align: center">
+                <a href="">
+                    <img src="https://github.com/JobGetabu/branch-chat/blob/main/screenshots/Screenshot%202022-12-18%20at%2012.38.18%20AM.png" width="600"/>
+                </a>
+            </td>         
+        </tr>
+    </table>
+</div>
