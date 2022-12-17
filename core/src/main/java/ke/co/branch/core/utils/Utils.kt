@@ -14,6 +14,11 @@ fun formatDate(date: String?, originFormat: String, toFormat: String): String? {
     }
 }
 
+fun formatDate(date: Date): String? {
+    var toFormat = "E,MMM yyyy HH:mm"
+    return SimpleDateFormat(toFormat, Locale.getDefault()).format(date)
+}
+
 fun showSnackBar(message: String?, activity: Activity?) {
     if (null != activity && null != message) {
         Snackbar.make(

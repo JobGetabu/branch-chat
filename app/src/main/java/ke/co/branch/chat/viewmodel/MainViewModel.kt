@@ -53,6 +53,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
+
     private suspend fun getMessages() = withContext(Dispatchers.IO)  {
         try {
             val messages = messagesRepository.getMessages()
@@ -99,14 +100,20 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    suspend fun createMessage(threadId: String, message: String, agentId: String) = liveData(Dispatchers.IO)  {
+    suspend fun createMessage(threadId: String, message: String, agentId: String?) = liveData(Dispatchers.IO)  {
         try {
             messagesRepository.createMessage(
                 MessagesRequest(threadId, message)
             )
             getMessages()
 
-            emit(Resource.success(data = "Message sent"))
+            var messages = listOf<Message>()
+            getMessagesByThreadId(threadId).collectLatest { msg ->
+                messages = msg
+                emit(Resource.success(data = messages))
+            }
+            emit(Resource.success(data = messages))
+
         } catch (e: Exception) {
             emit(Resource.error(message = "Message not sent!", data = null))
         }

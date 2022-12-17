@@ -29,6 +29,7 @@ class ChatGroupAdapter : RecyclerView.Adapter<ChatGroupAdapter.MyVH>() {
                 val intent = Intent(textMessage.context, ChatActivity::class.java)
                 intent.putExtra("USERNAME_EXTRA", model?.userId)
                 intent.putExtra("THREAD_EXTRA", model?.threadId)
+                intent.putExtra("AGENT_EXTRA", model?.threadId)
                 it.context.startActivity(intent)
             }
         }
